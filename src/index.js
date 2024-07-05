@@ -1,13 +1,15 @@
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+
 const express = require('express');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const apiRoutes = require('./routes/apiRoutes');
 const rateLimit = require('express-rate-limit');
-require('dotenv').config();
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT;
 
 // Middleware para seguridad
 app.use(helmet());
@@ -19,6 +21,7 @@ const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutos
   max: 100 // límite de 100 solicitudes por IP cada 15 minutos
 });
+
 app.use('/api', apiLimiter);
 
 // Usar rutas

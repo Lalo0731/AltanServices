@@ -11,15 +11,14 @@ const handlePostRequest = async (req, res) => {
   }
 
   const { MSISDN, OFFERID, AMOUNT, KEY } = req.body;
+  const currentDate = new Date().toISOString().slice(0, 10);
 
   try {
     const dbResult = await new Promise((resolve, reject) => {
         db.query("SELECT * FROM Stores WHERE `comerce_key` = ?", [KEY], (err, results) => {
             if (err) {
-                // return res.status(500).json({ error: 'Error de base de datos' });
                 reject({ status: 500, message: 'Error de base de datos' });
             } else if (results.length === 0) {
-                // return res.status(401).json({ error: 'Clave no válida' });
                 reject({ status: 401, message: 'Clave no válida' });
             } else {
                 resolve(results);
@@ -41,8 +40,8 @@ const handlePostRequest = async (req, res) => {
 
     const insertRecharge = await new Promise((resolve, reject) => {
 
-      const query = "INSERT INTO recharges (order_id, offerings, amount, MSISDN, comerce_key) VALUES (?, ?, ?, ?, ?)";
-      const values = [orderID, OFFERID, AMOUNT, MSISDN, KEY];
+      const query = "INSERT INTO recharges (order_id, offerings, amount, MSISDN, comerce_key, date_recharge) VALUES (?, ?, ?, ?, ?, ?)";
+      const values = [orderID, OFFERID, AMOUNT, MSISDN, KEY, currentDate];
 
       db.query(query, values, (err, results) => {
         if(err){

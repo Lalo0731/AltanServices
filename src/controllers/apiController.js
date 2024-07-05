@@ -56,7 +56,7 @@ const handlePostRequest = async (req, res) => {
     console.log("insertRecharge",insertRecharge);
 
     // Si todo está bien, envía la respuesta exitosa
-    res.status(200).json({ message: 'Datos recibidos correctamente', data: { MSISDN, OFFERID, AMOUNT, orderID } });
+    res.status(200).json({ message: 'success', msisdn: MSISDN, orderID });
 
   } catch (error) {
     const { status = 500, message = 'Error interno' } = error;

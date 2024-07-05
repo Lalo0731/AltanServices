@@ -2,8 +2,8 @@
 const fetch = require('node-fetch');
 
 const generateAccessToken = async () => {
-//   const production = 'NWlQY2EzZXdnd1NRTG42WGFrMGhaSGlIS0pHTmhJdmU6MTFGaUVHSGFIUG83SDRoWA=='; /** llave de producción **/
-  const production = 'WkdwVUlkVHVQQVdUQ0JxSlpHNjllS2ljNlNyVjRocXg6eUtuSGhMZVVFc0doU1psWA==';
+  const production = 'NWlQY2EzZXdnd1NRTG42WGFrMGhaSGlIS0pHTmhJdmU6MTFGaUVHSGFIUG83SDRoWA=='; /** llave de producción **/
+  // const production = 'WkdwVUlkVHVQQVdUQ0JxSlpHNjllS2ljNlNyVjRocXg6eUtuSGhMZVVFc0doU1psWA=='; /** llave de prueba **/
   const url = 'https://altanredes-prod.apigee.net/v1/oauth/accesstoken?grant-type=client_credentials';
   
   try {
@@ -34,20 +34,9 @@ const generateAccessToken = async () => {
 
 //RECARGA
 const sendRechargeRequest = async (accessToken, msisdn, offer) => {
-    const url_production = 'https://altanredes-prod.apigee.net/cm-sandbox/v1/products/purchase';
+    const url_production = 'https://altanredes-prod.apigee.net/cm/v1/products/purchase';
   
     try {
-
-      /*console.log("*************************************");
-      console.log("*************************************");
-      console.log("*************************************");
-      console.log("url_production", url_production);
-      console.log("accessToken", accessToken);
-      console.log("msisdn",msisdn);
-      console.log("offer",offer);
-      console.log("*************************************");
-      console.log("*************************************");
-      console.log("*************************************");*/
 
       const response = await fetch(url_production, {
         method: 'POST',

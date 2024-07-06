@@ -10,8 +10,12 @@ const handlePostRequest = async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const { MSISDN, OFFERID, AMOUNT, KEY } = req.body;
+  let { MSISDN, OFFERID, AMOUNT, KEY } = req.body;
+  MSISDN = MSISDN.replace(/^\+?52/, '');
+
   const currentDate = new Date().toISOString().slice(0, 10);
+
+  console.log("MISIDN: ", MSISDN);
 
   try {
     const dbResult = await new Promise((resolve, reject) => {

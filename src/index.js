@@ -22,10 +22,10 @@ const apiLimiter = rateLimit({
   max: 100 // límite de 100 solicitudes por IP cada 15 minutos
 });
 
-app.use('/api', apiLimiter);
+app.use(apiLimiter); //limita la cantidad de solicitudes que una dirección IP que puede hacer al servidor en un período de tiempo específico, en este caso, 100 solicitudes cada 15 minutos.
 
 // Usar rutas
-app.use('/api', apiRoutes);
+app.use('/', apiRoutes);
 
 // Iniciar el servidor
 app.listen(port, () => {

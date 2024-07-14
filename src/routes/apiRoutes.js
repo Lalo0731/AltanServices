@@ -7,7 +7,7 @@ const { insertStore } = require('../controllers/storeController');
 
 const { validateApi, validateStore } = require('../middleware/validateRequest');
 
-router.post('/', validateApi, handlePostRequest);
+router.post('/recharge', validateApi, handlePostRequest);
 router.post('/store', validateStore, insertStore);
 
 module.exports = router;

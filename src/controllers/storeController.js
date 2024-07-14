@@ -11,8 +11,8 @@ const insertStore = async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  let { name, comerce_key } = req.body;
-
+  let { name } = req.body;
+  const comerce_key = name+"Spot";
 
   try {
 
@@ -36,7 +36,7 @@ const insertStore = async (req, res) => {
     console.log("insertDataStore",insertDataStore);
 
     // Si todo está bien, envía la respuesta exitosa
-    res.status(200).json({ message: 'success', comerce_key });
+    res.status(200).json({ message: 'success', encryptedComerceKey });
 
   } catch (error) {
     const { status = 500, message = 'Error interno' } = error;
